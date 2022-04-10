@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
+@import url('https://alquran.cloud/public/css/font-kitab.css?v=1');
+
+body {
+    font-family: 'Cairo', sans-serif !important;
+    background-color: #ecf1f4 !important;
+}
+
+.ketab-font {
+    font-family: 'kitab', 'Cairo', sans-serif !important;
+}
+
+.main-color-one {
+    color: #34495E;
+}
+
+.main-color-two {
+    color: #41B883;
+}
+
+.main-bk {
+    background-color: #ecf1f4;
+}
+
+.main-btn {
+    outline: none;
+    border: 1px solid #ecf1f4;
+    background-color: #ecf1f4;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: .8rem;
+    font-weight: 700;
+    color: #41B883;
+}
+
+.current-playing-span {
+    background-color: #41B883 !important;
+}
+
+/* start loader */
+#loading {
+    display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #ecf1f4;
+    border-radius: 50%;
+    border-top-color: #41B883;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+/* end loader */
