@@ -36,7 +36,8 @@
           <select id="write-type-selector" class="form-select w-75 m-auto mb-md-0 mb-2 main-color-one shadow-none"
                   @change="getAyahsWriteType($event.target.value, $event.target.options[$event.target.selectedIndex].text)">
             <option value="">اختر نوع الكتابة</option>
-            <option v-for="type in writeTypes.filter(wType => !noNeededWriteType.includes(wType.identifier))" :value="type.identifier">
+            <option v-for="type in writeTypes.filter(wType => !noNeededWriteType.includes(wType.identifier))"
+                    :value="type.identifier">
               {{ type.name }}
             </option>
           </select>
@@ -88,7 +89,8 @@
               <select class="form-select mb-2 main-color-one shadow-none"
                       @change="changeAudioQuality($event.target.value)">
                 <option value="high"
-                        :selected="$cookies.get('audio-quality') === 'high' || $cookies.get('audio-quality') === null">جودة
+                        :selected="$cookies.get('audio-quality') === 'high' || $cookies.get('audio-quality') === null">
+                  جودة
                   الصوت عالية
                 </option>
                 <option value="low" :selected="$cookies.get('audio-quality') === 'low'">جودة الصوت منخفضة</option>
@@ -97,7 +99,8 @@
             <div class="col-sm-12 col-6">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="on" id="trackingAyah"
-                       :checked="$cookies.get('tracking-ayah') === 'true'" @change="trackingAyah($event.target.checked)">
+                       :checked="$cookies.get('tracking-ayah') === 'true'"
+                       @change="trackingAyah($event.target.checked)">
                 <label class="form-check-label main-color-one" for="trackingAyah">
                   تتبع الآية المقروءة
                 </label>
@@ -120,7 +123,8 @@
             <div class="col-lg-12 col-sm-4 col-6">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentSurah" value="surah"
-                       @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'surah'">
+                       @change="changeRepeatScope($event.target.value)"
+                       :checked="$cookies.get('repeat-scope') === 'surah'">
                 <label class="form-check-label main-color-one" for="repeatCurrentSurah">
                   تكرار السورة الحالية
                 </label>
@@ -129,11 +133,15 @@
             <div class="col-lg-12 col-sm-4 col-6">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentAyah" value="ayah"
-                       @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'ayah'">
+                       @change="changeRepeatScope($event.target.value)"
+                       :checked="$cookies.get('repeat-scope') === 'ayah'">
                 <label class="form-check-label main-color-one" for="repeatCurrentAyah">
                   تكرار الآية الحالية
                 </label>
               </div>
+            </div>
+            <div class="col-lg-12 col-sm-4 col-6">
+              <go-to-top-btn v-show="showScrollGoToTopBtn"></go-to-top-btn>
             </div>
           </div>
         </div>
@@ -344,10 +352,12 @@
 
 <script>
 
+import GoToTopBtn from "../components/global/GoToTopBtn.vue";
 import surahsJson from "@/assets/json/surahs"
 import readersJson from "@/assets/json/readers"
 
 export default {
+  components: {GoToTopBtn},
   data() {
     return {
       surahNo: '',
@@ -360,8 +370,8 @@ export default {
       writeTypes: [],
       tafsirs: [],
       noNeededWriteType: ['quran-tajweed', 'quran-wordbyword', 'quran-kids', 'quran-corpus-qd',
-                          'quran-wordbyword-2', 'quran-uthmani-quran-academy', 'quran-simple-enhanced',
-                          'quran-simple-min'],
+        'quran-wordbyword-2', 'quran-uthmani-quran-academy', 'quran-simple-enhanced',
+        'quran-simple-min'],
       readers: readersJson,
       surahs: surahsJson,
       withoutTranslations: true,
@@ -421,7 +431,8 @@ export default {
       fetchSurahFailed: false,
       loading: true,
       currentAyah: null,
-      firstAyahNumber: null
+      firstAyahNumber: null,
+      showScrollGoToTopBtn: false
     }
   },
   methods: {
@@ -663,9 +674,11 @@ export default {
           playerContainerHeight = document.getElementById('player-container').clientHeight + 16 // 16 is the margin top of this element
       if (bodyTop < 0) {
         document.getElementById('player-container').classList.add('fixed')
+        this.showScrollGoToTopBtn = true
       } else {
-        playerContainerHeight = 0
         document.getElementById('player-container').classList.remove('fixed')
+        playerContainerHeight = 0
+        this.showScrollGoToTopBtn = false
       }
       document.getElementsByTagName('body')[0].style.marginTop = `${playerContainerHeight}px`
     })
