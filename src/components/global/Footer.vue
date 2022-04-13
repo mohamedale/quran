@@ -1,4 +1,5 @@
 <template>
+  <go-to-top-btn></go-to-top-btn>
   <footer>
     <div class="footer-main-content p-3">
       <p class="text-center m-0">تم التطوير بكل الـ❤️ بواسطة <a :href="'https://mohamed-abogabal.codes'" target="_blank">محمد
@@ -26,3 +27,9 @@ footer p a {
   color: #41B883;
 }
 </style>
+<script>
+import GoToTopBtn from "./GoToTopBtn.vue";
+export default {
+  components: {GoToTopBtn}
+}
+</script>
