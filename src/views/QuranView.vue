@@ -52,69 +52,89 @@
         </div>
       </div>
     </div>
-    <div class="player-container mt-3">
+    <div id="player-container" class="player-container mt-3">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-5 col-md-6">
           <audio id="player" class="d-block w-100 mb-2" :current-ayah="currentAyah"
                  @playing="scrollToActiveAyah(currentAyah)"
                  @ended="switchAudio" controls>
             <source src="" type="audio/mpeg">
           </audio>
         </div>
-        <div class="col-lg-2">
-          <select class="form-select main-color-one shadow-none mb-2"
-                  @change="changeReader($event.target.value)">
-            <option v-for="reader in readers.data" :value="reader.identifier"
-                    :selected="reader.identifier === selectedReader">
-              {{ reader.name }}
-            </option>
-          </select>
-          <select class="form-select main-color-one shadow-none mb-2 ketab-font"
-                  @change="getSurahAyahs($event.target.value)">
-            <option v-for="surah in surahs.data" :value="surah.number" :selected="$route.params.id == surah.number">
-              {{ surah.name }}
-            </option>
-          </select>
-        </div>
-        <div class="col-lg-2">
-          <select class="form-select mb-2 main-color-one shadow-none"
-                  @change="changeAudioQuality($event.target.value)">
-            <option value="high"
-                    :selected="$cookies.get('audio-quality') === 'high' || $cookies.get('audio-quality') === null">جودة
-              الصوت عالية
-            </option>
-            <option value="low" :selected="$cookies.get('audio-quality') === 'low'">جودة الصوت منخفضة</option>
-          </select>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="on" id="trackingAyah"
-                   :checked="$cookies.get('tracking-ayah') === 'true'" @change="trackingAyah($event.target.checked)">
-            <label class="form-check-label main-color-one" for="trackingAyah">
-              تتبع الآية المقروءة
-            </label>
+        <div class="col-lg-2 col-md-3">
+          <div class="row">
+            <div class="col-sm-12 col-6">
+              <select class="form-select main-color-one shadow-none mb-2"
+                      @change="changeReader($event.target.value)">
+                <option v-for="reader in readers.data" :value="reader.identifier"
+                        :selected="reader.identifier === selectedReader">
+                  {{ reader.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-12 col-6">
+              <select class="form-select main-color-one shadow-none mb-2 ketab-font"
+                      @change="getSurahAyahs($event.target.value)">
+                <option v-for="surah in surahs.data" :value="surah.number" :selected="$route.params.id == surah.number">
+                  {{ surah.name }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="col-lg-2">
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="repeatType" id="repeatAllSurahs" value="all"
-                   @change="changeRepeatScope($event.target.value)"
-                   :checked="$cookies.get('repeat-scope') === 'all' || $cookies.get('repeat-scope') === null">
-            <label class="form-check-label main-color-one" for="repeatAllSurahs">
-              تكرار كل السور
-            </label>
+        <div class="col-lg-2 col-md-3">
+          <div class="row">
+            <div class="col-sm-12 col-6">
+              <select class="form-select mb-2 main-color-one shadow-none"
+                      @change="changeAudioQuality($event.target.value)">
+                <option value="high"
+                        :selected="$cookies.get('audio-quality') === 'high' || $cookies.get('audio-quality') === null">جودة
+                  الصوت عالية
+                </option>
+                <option value="low" :selected="$cookies.get('audio-quality') === 'low'">جودة الصوت منخفضة</option>
+              </select>
+            </div>
+            <div class="col-sm-12 col-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="on" id="trackingAyah"
+                       :checked="$cookies.get('tracking-ayah') === 'true'" @change="trackingAyah($event.target.checked)">
+                <label class="form-check-label main-color-one" for="trackingAyah">
+                  تتبع الآية المقروءة
+                </label>
+              </div>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentSurah" value="surah"
-                   @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'surah'">
-            <label class="form-check-label main-color-one" for="repeatCurrentSurah">
-              تكرار السورة الحالية
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentAyah" value="ayah"
-                   @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'ayah'">
-            <label class="form-check-label main-color-one" for="repeatCurrentAyah">
-              تكرار الآية الحالية
-            </label>
+        </div>
+        <div class="col-lg-2 col-md-12">
+          <div class="row">
+            <div class="col-lg-12 col-sm-4 col-6">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeatType" id="repeatAllSurahs" value="all"
+                       @change="changeRepeatScope($event.target.value)"
+                       :checked="$cookies.get('repeat-scope') === 'all' || $cookies.get('repeat-scope') === null">
+                <label class="form-check-label main-color-one" for="repeatAllSurahs">
+                  تكرار كل السور
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-12 col-sm-4 col-6">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentSurah" value="surah"
+                       @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'surah'">
+                <label class="form-check-label main-color-one" for="repeatCurrentSurah">
+                  تكرار السورة الحالية
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-12 col-sm-4 col-6">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeatType" id="repeatCurrentAyah" value="ayah"
+                       @change="changeRepeatScope($event.target.value)" :checked="$cookies.get('repeat-scope') === 'ayah'">
+                <label class="form-check-label main-color-one" for="repeatCurrentAyah">
+                  تكرار الآية الحالية
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -193,6 +213,17 @@
 
 .head .info-1 .name {
   font-size: 1.4rem;
+}
+
+.player-container.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  border: 1px solid #eee;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .actions select,
@@ -626,6 +657,18 @@ export default {
     this.getWriteTypes()
     // Fetch tasfirs
     this.getTafsirs()
+    // Make player container is fixed when it hides at big scroll
+    window.addEventListener('scroll', () => {
+      let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20,
+          playerContainerHeight = document.getElementById('player-container').clientHeight + 16 // 16 is the margin top of this element
+      if (bodyTop < 0) {
+        document.getElementById('player-container').classList.add('fixed')
+      } else {
+        playerContainerHeight = 0
+        document.getElementById('player-container').classList.remove('fixed')
+      }
+      document.getElementsByTagName('body')[0].style.marginTop = `${playerContainerHeight}px`
+    })
   },
 }
 </script>
