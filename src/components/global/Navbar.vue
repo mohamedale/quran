@@ -4,9 +4,6 @@
     <div class="container-fluid">
       <router-link class="navbar-brand m-auto text-center" to="/">
         <img src="/src/assets/img/quran.png" alt="القرآن الكريم">
-        <div class="main-color-one fw-bold" style="font-size: 1.2rem">
-          صدقة جارية على روح المرحوم <span class="main-color-two">حاتم الشورى</span>
-        </div>
       </router-link>
     </div>
   </nav>
