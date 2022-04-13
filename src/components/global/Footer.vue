@@ -3,7 +3,7 @@
     <div class="footer-main-content p-3">
       <p class="text-center m-0">تم التطوير بكل الـ❤️ بواسطة <a :href="'https://mohamed-abogabal.codes'" target="_blank">محمد
         على</a> | يمكنك المساهمة فى التطوير عبر
-        <a :href="'https://github.com/mohamedale/quraan'" target="_blank">Github</a> | جميع البيانات يتم جلبها من <a
+        <a :href="'https://github.com/mohamedale/quran'" target="_blank">Github</a> | جميع البيانات يتم جلبها من <a
             :href="'https://alquran.cloud/'" target="_blank">Al Quran Cloud</a></p>
     </div>
   </footer>
