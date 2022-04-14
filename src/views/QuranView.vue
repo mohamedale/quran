@@ -669,18 +669,18 @@ export default {
     // Fetch tasfirs
     this.getTafsirs()
     // Make player container is fixed when it hides at big scroll
+    let playerContainerHeight = document.getElementById('player-container').clientHeight + 16  // 16 is the margin top of this element
     window.addEventListener('scroll', () => {
-      let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20,
-          playerContainerHeight = document.getElementById('player-container').clientHeight + 16 // 16 is the margin top of this element
+      let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20
       if (bodyTop < 0) {
         document.getElementById('player-container').classList.add('fixed')
+        document.getElementsByTagName('body')[0].style.marginTop = `${playerContainerHeight}px`
         this.showScrollGoToTopBtn = true
       } else {
         document.getElementById('player-container').classList.remove('fixed')
-        playerContainerHeight = 0
+        document.getElementsByTagName('body')[0].style.marginTop = '0'
         this.showScrollGoToTopBtn = false
       }
-      document.getElementsByTagName('body')[0].style.marginTop = `${playerContainerHeight}px`
     })
   },
 }
