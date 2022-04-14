@@ -704,6 +704,8 @@ export default {
           document.getElementsByTagName('body')[0].style.margin = 0
           this.showScrollGoToTopBtn = false
         }
+      } else {
+        document.getElementsByTagName('body')[0].style.margin = 0
       }
     })
   },
