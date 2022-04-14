@@ -693,15 +693,17 @@ export default {
     // Make player container is fixed when it hides at big scroll
     let playerContainerHeight = document.getElementById('player-container').clientHeight + 16  // 16 is the margin top of this element
     window.addEventListener('scroll', () => {
-      let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20
-      if (bodyTop < 0) {
-        document.getElementById('player-container').classList.add('fixed')
-        document.getElementsByTagName('body')[0].style.margin = `${playerContainerHeight}px 0`
-        this.showScrollGoToTopBtn = true
-      } else {
-        document.getElementById('player-container').classList.remove('fixed')
-        document.getElementsByTagName('body')[0].style.margin = 0
-        this.showScrollGoToTopBtn = false
+      if (this.$route.name === 'quran') {
+        let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20
+        if (bodyTop < 0) {
+          document.getElementById('player-container').classList.add('fixed')
+          document.getElementsByTagName('body')[0].style.margin = `${playerContainerHeight}px 0`
+          this.showScrollGoToTopBtn = true
+        } else {
+          document.getElementById('player-container').classList.remove('fixed')
+          document.getElementsByTagName('body')[0].style.margin = 0
+          this.showScrollGoToTopBtn = false
+        }
       }
     })
   },
