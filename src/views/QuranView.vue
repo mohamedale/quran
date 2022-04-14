@@ -2,16 +2,16 @@
   <main>
     <div class="head text-center">
       <div class="row" v-show="surahNo !== ''">
-        <div class="col-4">
+        <div class="col-sm-4 col-5">
           <h5 class="info-1 m-0">
             <span class="number main-color-two d-inline-block me-2">{{ surahNo }}</span>
             <span class="name ketab-font main-color-one">{{ surahName }}</span>
           </h5>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4 col-2">
           <h5 class="info-2 m-0 main-color-one">{{ revelationType === 'Meccan' ? 'مكية' : 'مدنية' }}</h5>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4 col-5">
           <h5 class="info-3 m-0 main-color-two">
             عدد الآيات: {{ numberOfAyahs }}
           </h5>
@@ -65,7 +65,7 @@
         <div class="col-lg-2 col-md-3">
           <div class="row">
             <div class="col-sm-12 col-6">
-              <select class="form-select main-color-one shadow-none mb-2"
+              <select class="form-select main-color-one shadow-none mb-2 responsive-font-size"
                       @change="changeReader($event.target.value)">
                 <option v-for="reader in readers.data" :value="reader.identifier"
                         :selected="reader.identifier === selectedReader">
@@ -86,7 +86,7 @@
         <div class="col-lg-2 col-md-3">
           <div class="row">
             <div class="col-sm-12 col-6">
-              <select class="form-select mb-2 main-color-one shadow-none"
+              <select class="form-select mb-2 main-color-one shadow-none responsive-font-size"
                       @change="changeAudioQuality($event.target.value)">
                 <option value="high"
                         :selected="$cookies.get('audio-quality') === 'high' || $cookies.get('audio-quality') === null">
@@ -346,6 +346,28 @@
 #body .ayah-box .ayah-additional-data .additional-data-content {
   display: inline-block;
   line-height: normal;
+}
+
+@media (max-width: 576px) {
+  .head .info-1 .number {
+    width: 1.7rem;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    font-size: 1rem;
+  }
+
+  .head .info-1 .name {
+    font-size: 1.2rem;
+  }
+
+  .head .info-2,
+  .head .info-3 {
+    font-size: .9rem;
+  }
+
+  .player-container select.responsive-font-size {
+    font-size: .8rem;
+  }
 }
 
 </style>
