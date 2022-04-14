@@ -23,6 +23,6 @@ import CustomFooter from "./components/global/Footer.vue";
 .container {
   padding-top: 6rem;
   padding-bottom: 2rem;
-  min-height: 100vh;
+  min-height: 94vh;
 }
 </style>
