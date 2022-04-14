@@ -696,11 +696,11 @@ export default {
       let bodyTop = document.getElementById('body').getBoundingClientRect().top - document.getElementById('main-nav').scrollHeight - 20
       if (bodyTop < 0) {
         document.getElementById('player-container').classList.add('fixed')
-        document.getElementsByTagName('body')[0].style.marginTop = `${playerContainerHeight}px`
+        document.getElementsByTagName('body')[0].style.margin = `${playerContainerHeight}px 0`
         this.showScrollGoToTopBtn = true
       } else {
         document.getElementById('player-container').classList.remove('fixed')
-        document.getElementsByTagName('body')[0].style.marginTop = '0'
+        document.getElementsByTagName('body')[0].style.margin = 0
         this.showScrollGoToTopBtn = false
       }
     })
