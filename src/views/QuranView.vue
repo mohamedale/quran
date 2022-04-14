@@ -399,6 +399,7 @@ export default {
       withoutTranslations: true,
       withoutWriteTypes: true,
       withoutTafsirs: true,
+      defaultCookiesExpireDate: '10y',
       selectedReader: this.$cookies.get('reader-id'),
       selectedTranslationAuthorName: '',
       selectedTranslationLangName: '',
@@ -656,14 +657,14 @@ export default {
       }
     },
     changeReader(readerId) {
-      this.$cookies.set('reader-id', readerId)
+      this.$cookies.set('reader-id', readerId, this.defaultCookiesExpireDate)
       this.getSurahAyahs(this.surahNo, readerId)
     },
     changeRepeatScope(scope) {
-      this.$cookies.set('repeat-scope', scope)
+      this.$cookies.set('repeat-scope', scope, this.defaultCookiesExpireDate)
     },
     changeAudioQuality(quality) {
-      this.$cookies.set('audio-quality', quality)
+      this.$cookies.set('audio-quality', quality, this.defaultCookiesExpireDate)
     },
     scrollToActiveAyah(ayahId) {
       if (this.$cookies.get('tracking-ayah') !== 'true') return;
@@ -674,10 +675,10 @@ export default {
     },
     trackingAyah(tracking) {
       if (tracking) {
-        this.$cookies.set('tracking-ayah', tracking)
+        this.$cookies.set('tracking-ayah', tracking, this.defaultCookiesExpireDate)
         this.scrollToActiveAyah(this.currentAyah)
       } else {
-        this.$cookies.set('tracking-ayah', tracking)
+        this.$cookies.set('tracking-ayah', tracking, this.defaultCookiesExpireDate)
       }
     }
   },
